@@ -1,3 +1,7 @@
+; Test methods for Homework 1
+; Will Graham
+
+; Should return #T
 (define (test1)
   (jobs_ok?
    '(
@@ -25,6 +29,7 @@
 	(Trivedi 1 1 1)))
   )
 
+; Should return #F
 (define (test2)
   (jobs_ok?
    '(
