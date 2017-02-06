@@ -27,11 +27,27 @@
 (define (findSkills lst name)
   (cond ((null? lst) #f)
 	((eqv? name (caar lst)) (cdar lst))
-	(else (findName (cdr lst) name))
+	(else (findSkills (cdr lst) name))
   )
 )
 
 ; Checks a name for phone skill
-;(define (phoneSkill? lst name)
-  
-;)
+(define (phoneSkill? lst name)
+  (cond ((= 1 (car (findSkills lst name))) #T)
+	(else #F)
+  )
+)
+
+; Checks a name for computers skill
+(define (compSkill? lst name)
+  (cond ((= 1 (cadr (findSkills lst name))) #T)
+	(else #F)
+  )
+)
+
+; Checks a name for network skill
+(define (netSkill? lst name)
+  (cond ((= 1 (caddr (findSkills lst name))) #T)
+	(else #F)
+  )
+)
