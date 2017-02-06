@@ -3,6 +3,7 @@
 
 ; Should return #T
 (define (test1)
+  (display "Should be #T") (newline)
   (jobs_ok?
    '(
 	(Park Dunbar Khan Lloyd)
@@ -29,8 +30,9 @@
 	(Trivedi 1 1 1)))
   )
 
-; Should return #F
+; Should return #F - skills error
 (define (test2)
+  (display "Should be #F") (newline)
   (jobs_ok?
    '(
 	(Young Collins Vieira Liu)

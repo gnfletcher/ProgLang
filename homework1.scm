@@ -23,10 +23,15 @@
 	(else (cons (car lst) (flatten (cdr lst)))))
   )
 
-; Finds a name in the Employees list (currently just prints name if found)
-(define (findName lst name)
+; Finds skills list for given employee
+(define (findSkills lst name)
   (cond ((null? lst) #f)
-	((eqv? name (caar lst)) (display (caar lst)))
+	((eqv? name (caar lst)) (cdar lst))
 	(else (findName (cdr lst) name))
   )
 )
+
+; Checks a name for phone skill
+;(define (phoneSkill? lst name)
+  
+;)
