@@ -3,7 +3,8 @@
 
 (define (jobs_ok? Assignment Employees)
   (cond ((dupes? (flatten Assignment)) #F)
-	(else #T)
+	((employees_ok? Assignment Employees) #T)
+	(else #F)
 
   )
 )
@@ -24,30 +25,46 @@
   )
 
 ; Finds skills list for given employee
-(define (findSkills lst name)
-  (cond ((null? lst) #f)
-	((eqv? name (caar lst)) (cdar lst))
-	(else (findSkills (cdr lst) name))
+(define (findSkills emplst name)
+  (cond ((null? emplst) #f)
+	((eqv? name (caar emplst)) (cdar emplst))
+	(else (findSkills (cdr emplst) name))
   )
 )
 
 ; Checks a name for phone skill
-(define (phoneSkill? lst name)
-  (cond ((= 1 (car (findSkills lst name))) #T)
+(define (phoneSkill? emplst name)
+  (cond ((= 1 (car (findSkills emplst name))) #T)
 	(else #F)
   )
 )
 
 ; Checks a name for computers skill
-(define (compSkill? lst name)
-  (cond ((= 1 (cadr (findSkills lst name))) #T)
+(define (compSkill? emplst name)
+  (cond ((= 1 (cadr (findSkills emplst name))) #T)
 	(else #F)
   )
 )
 
 ; Checks a name for network skill
-(define (netSkill? lst name)
-  (cond ((= 1 (caddr (findSkills lst name))) #T)
+(define (netSkill? emplst name)
+  (cond ((= 1 (caddr (findSkills emplst name))) #T)
 	(else #F)
+  )
+)
+
+; Checks list of 4 employees for required skills
+(define (skills_ok? shiftlst emplst)
+  (cond ((eqv? #F (phoneSkill? emplst (car shiftlst))) #F)
+	((eqv? #F (phoneSkill? emplst (cadr shiftlst))) #F)
+	((eqv? #F (compSkill? emplst (caddr shiftlst))) #F)
+	((eqv? #F (netSkill? emplst (cadddr shiftlst))) #F)
+  )
+)
+
+(define (employees_ok? shiftlst emplst)
+  (cond ((null? shiftlst) #T)
+	((eqv? #F (skills_ok? (car shiftlst) emplst)) #F)
+	(else (employees_ok? (cdr shiftlst) emplst))
   )
 )
