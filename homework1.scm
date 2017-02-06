@@ -1,8 +1,8 @@
 ; Homework 1
 ; Will Graham
 
-(define (jobs_ok? Shifts Roster)
-  (cond ((dupes? (flatten Shifts)) #F)
+(define (jobs_ok? Assignment Employees)
+  (cond ((dupes? (flatten Assignment)) #F)
 	(else #T)
 
   )
@@ -22,3 +22,4 @@
 	((pair? (car lst)) (append (flatten (car lst)) (flatten (cdr lst))))
 	(else (cons (car lst) (flatten (cdr lst)))))
   )
+
