@@ -23,3 +23,10 @@
 	(else (cons (car lst) (flatten (cdr lst)))))
   )
 
+; Finds a name in the Employees list (currently just prints name if found)
+(define (findName lst name)
+  (cond ((null? lst) #f)
+	((eqv? name (caar lst)) (display (caar lst)))
+	(else (findName (cdr lst) name))
+  )
+)
