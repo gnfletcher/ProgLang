@@ -1,11 +1,15 @@
 ; Homework 1
-; Will Graham
+
+; Takes in two lists, one of shift sublists,
+; then a list of employee record sublsists.
+; Duplicates in the shift lists are checked for, then
+; employee are checked for the required skills in the record list.
+					; Will Graham
 
 (define (jobs_ok? Assignment Employees)
   (cond ((dupes? (flatten Assignment)) #F)
 	((employees_ok? Assignment Employees) #T)
 	(else #F)
-
   )
 )
 
@@ -14,15 +18,16 @@
   (cond ((null? lst) #f)
 	((member (car lst) (cdr lst)) #t)
 	(else (dupes? (cdr lst)))
-	)
+  )
 )
 
 ; Flattens a list with nested lists into a list of depth 1
 (define (flatten lst)
   (cond ((null? lst) '())
 	((pair? (car lst)) (append (flatten (car lst)) (flatten (cdr lst))))
-	(else (cons (car lst) (flatten (cdr lst)))))
+	(else (cons (car lst) (flatten (cdr lst))))
   )
+)
 
 ; Finds skills list for given employee
 (define (findSkills emplst name)
