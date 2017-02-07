@@ -62,6 +62,7 @@
   )
 )
 
+; Overall method to check all shifts of employees for skills
 (define (employees_ok? shiftlst emplst)
   (cond ((null? shiftlst) #T)
 	((eqv? #F (skills_ok? (car shiftlst) emplst)) #F)
