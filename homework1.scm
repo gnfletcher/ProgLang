@@ -64,6 +64,7 @@
 	((eqv? #F (phoneSkill? emplst (cadr shiftlst))) #F)
 	((eqv? #F (compSkill? emplst (caddr shiftlst))) #F)
 	((eqv? #F (netSkill? emplst (cadddr shiftlst))) #F)
+	(else #T)
   )
 )
 
