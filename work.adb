@@ -1,3 +1,9 @@
+-- Homework #2
+-- Programming Languages
+-- Author: Will Graham
+-- Date: Feb. 2017
+
+
 with Ada.Text_IO, Ada.Integer_Text_IO;
 use Ada.Text_IO, Ada.Integer_Text_IO;
 
