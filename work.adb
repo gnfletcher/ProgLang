@@ -8,20 +8,22 @@ with Ada.Text_IO, Ada.Integer_Text_IO;
 use Ada.Text_IO, Ada.Integer_Text_IO;
 
 procedure Work is
-   type Assignments is array (1..4, 1..3) of Character; --Array length 4, of size 7 Strings (allows for "A B C D")
+   type Assignments is array (1..4, 1..4) of Character; -- 4 shifts, with 4 workers in each shift
    A: Assignments;
    N: Integer;  -- Number of worker records to take in
+   
    -- Gets 4 lines of 4 characters (3 spaces in between), store them in array A
    procedure GetAssignments is 
       Delim: Character;  -- Garbage collecter for spaces between letters, not used otherwise
    begin   
-      for I in A'Range(1) loop
-	 --Get(A(I));
+      for I in A'Range(1) loop  -- Get char, throw away space, repeat, repeatx4
 	 Get(A(I, 1));
 	 Get(Delim);
 	 Get(A(I, 2));
 	 Get(Delim);
 	 Get(A(I, 3));
+	 Get(Delim);
+	 Get(A(I, 4));
 	 Skip_Line;
       end loop;
    end GetAssignments;
@@ -33,13 +35,11 @@ procedure Work is
       Curr: Integer := 1;
    begin      
       for X in A'Range(1) loop
-	 for I in Integer range 1..3  loop
-	    if A(X, I) /= ' ' then
-	       if T(Character'Pos(A(X, I))) = False then
-		  T(Character'Pos(A(X, I))) := True;
-	       else  -- Dupe found
-		  return True;
-	       end if;   
+	 for I in A'Range(2)  loop	    
+	    if T(Character'Pos(A(X, I))) = False then
+	       T(Character'Pos(A(X, I))) := True;
+	    else  -- Dupe found
+	       return True;
 	    end if;
 	 end loop;
       end loop;
@@ -52,7 +52,7 @@ procedure Work is
       return False;
       
       
-end GetRecords;
+   end GetRecords;
    
 begin -- Main body
    
@@ -64,7 +64,9 @@ begin -- Main body
    if CheckDupes = True then
       Put_Line("Not Acceptable");
       return;
+   else
+      Put_Line("Fine.");
    end if;
-   
+   --Put(Character'Pos(A(1,2)));
    
 end Work;
