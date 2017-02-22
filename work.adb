@@ -28,16 +28,18 @@ procedure Work is
       end loop;
    end GetAssignments;
    
-   -- Use array of 65..90, if array(Character'Pos(i)) is empty, set it to 1, move on. Else, dupe.
+   -- Gets ASCII value of current char mod 32 (case insensitive) then checks
+   -- position in temp array default w/ False. If false, flip to true. Else,
+   -- there must be a dupe.
    function CheckDupes return Boolean is
-      type Uniq is array(65..90) of Boolean with Default_Component_Value => False;
+      type Uniq is array(1..26) of Boolean with Default_Component_Value => False;
       T: Uniq;
       Curr: Integer := 1;
    begin      
       for X in A'Range(1) loop
 	 for I in A'Range(2)  loop	    
-	    if T(Character'Pos(A(X, I))) = False then
-	       T(Character'Pos(A(X, I))) := True;
+	    if T(Character'Pos(A(X, I)) mod 32) = False then
+	       T(Character'Pos(A(X, I)) mod 32) := True;
 	    else  -- Dupe found
 	       return True;
 	    end if;
