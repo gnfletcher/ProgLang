@@ -13,9 +13,38 @@ procedure Work is
       end loop;
    end GetAssignments;
    
+   -- Use array of 65..90, if array(Character'Pos(i)) is empty, set it to 1, move on. Else, dupe.
+   function CheckDupes return Boolean is
+      type Temp is array(65..90) of Boolean with Default_Component_Value => False;
+      T: Temp;
+      Curr: Integer := 1;
+   begin      
+      for X in A'Range loop
+	 for I in Integer range 1..7  loop
+	    if A(X)(I) /= ' ' then
+	       if T(Character'Pos(A(X)(I))) = False then
+		  T(Character'Pos(A(X)(I))) := True;
+	       else
+		  return True;
+	       end if;   
+	    end if;
+	 end loop;
+      end loop;
+      
+      return False;
+   end CheckDupes;
+   
+   
+   
 begin -- Main bodt
    
    GetAssignments;
-   Put(A(2)(3));
+   
+   --TODO: This should _should_ occur after all input is entered
+   if CheckDupes = True then
+      Put_Line("Not Acceptable");
+   end if;
+   
+   --Put(Character'Pos('A'));
    
 end Work;
