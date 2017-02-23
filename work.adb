@@ -34,7 +34,7 @@ procedure Work is
    function CheckDupes return Boolean is
       type Uniq is array(1..26) of Boolean with Default_Component_Value => False;
       T: Uniq;
-      Curr: Integer := 1;
+      --  Curr: Integer := 1;
    begin      
       for X in A'Range(1) loop
 	 for I in A'Range(2)  loop	    
@@ -69,6 +69,5 @@ begin -- Main body
    else
       Put_Line("Fine.");
    end if;
-   --Put(Character'Pos(A(1,2)));
    
 end Work;
