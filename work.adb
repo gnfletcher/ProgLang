@@ -126,8 +126,9 @@ begin -- Main body
    
    if CheckDupes = True or Assignments_Fine = False Then
       Put_Line("Not Acceptable");
-      return;
+   else
+      Put_Line("Acceptable");
    end if;
-   Put_Line("Acceptable");
+   
    
 end Work;
