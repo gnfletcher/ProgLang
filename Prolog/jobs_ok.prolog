@@ -26,6 +26,6 @@ shiftOK([W,X,Y,Z], Employees) :- doesPhone(W, Employees),
 
 
 
-assignOK([], Employees).
+assignOK([], _).
 assignOK([Shift | OtherShifts], Employees) :- shiftOK(Shift, Employees),
 					      assignOK(OtherShifts, Employees).
