@@ -8,7 +8,8 @@ jobs_ok(Assignment, Employees) :- noDupes(Assignment),
 
 % noDupes(-L)
 % True if the list contains no duplicate elements
-noDupes(L) :- flatten(L, N),is_set(N).
+noDupes(L) :- flatten(L, N),
+	      is_set(N).
 
 % findEmpSkills(+Name, +Employees, -Skills)
 % Given an employee's name and the list of employee records, union the
@@ -19,9 +20,12 @@ findEmpSkills(Name, [_ | T], Skills) :-
 
 % doesSkill(+Name, +Employees)
 % True if for specified skill, the named employee can perform said skill.
-doesPhone(Name, Employees) :- findEmpSkills(Name, Employees, X), X = [1, _, _].
-doesComp(Name, Employees) :- findEmpSkills(Name, Employees, X), X = [_, 1, _].
-doesNet(Name, Employees) :- findEmpSkills(Name, Employees, X), X = [_, _, 1].
+doesPhone(Name, Employees) :- findEmpSkills(Name, Employees, X),
+			      X = [1, _, _].
+doesComp(Name, Employees) :- findEmpSkills(Name, Employees, X),
+			     X = [_, 1, _].
+doesNet(Name, Employees) :- findEmpSkills(Name, Employees, X),
+			    X = [_, _, 1].
 
 % shiftOK(+Shift, +Employees)
 % True if the given shift list (4 employees) can all perform required skills.
