@@ -6,7 +6,7 @@
 jobs_ok(Assignment, Employees) :- noDupes(Assignment),
 				  assignOK(Assignment, Employees).
 
-% noDupes(-L)
+% noDupes(?L)
 % True if the list contains no duplicate elements
 noDupes(L) :- flatten(L, N),
 	      is_set(N).
