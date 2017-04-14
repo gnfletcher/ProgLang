@@ -1,5 +1,19 @@
 class Employee
+  # Sets up instance variables, as well as getters and setters via obj.instanceVariable
   attr_accessor :name, :phone, :comp, :net
+
+  # Constructor
+  # Explicit overloading not allowed, so check via number of arguments
+  def initialize(*args)  # *args will put any paramters in an array named args
+    if args.size == 1
+      @name = args[0]
+    else
+      @name = args[0]
+      @phone = args[1]
+      @comp = args[2]
+      @net = args[3]
+    end    
+  end
 
   def doesPhone()
     @phone == "1"
@@ -13,27 +27,18 @@ class Employee
     @net == "1"
   end
 
-  # Overloading not allowed, so check via number of arguments
-  def initialize(*args)
-    if args.size == 1
-      @name = args[0]
-    else
-      @name = args[0]
-      @phone = args[1]
-      @comp = args[2]
-      @net = args[3]
-    end    
-  end
-
+  # Overriding the equality operator for the class
   def ==(o)
     return @name == o.name
   end
 
+  # Overriding the "to string" method for the class
   def to_s
-    puts "Name: #{name}, Phone: #{@phone}, Comp: #{@comp}, Net: #{@net}"
+    "Name: #{name}, Phone: #{@phone}, Comp: #{@comp}, Net: #{@net}"
   end
 end
 
+# Result of method's last line will automatically return, so no need for explicit return statement
 def shiftOk(shift)
   $records[shift[0]].doesPhone && $records[shift[1]].doesPhone && $records[shift[2]].doesComp && $records[shift[3]].doesNet
 end
@@ -59,12 +64,19 @@ numOfRecs = gets.to_i
   $records[empArray[0]] = Employee.new(empArray[0],empArray[1],empArray[2],empArray[3])
 end
 
-
-assignments.each_slice(4) do |i|
-  if (assignments.uniq.length != assignments.length) || !shiftOk(i) then
-    puts "Not Acceptable"
-    exit(1)
-  end
+acceptable = true
+if assignments.uniq.length != assignments.length then
+  acceptable = false
 end
 
- 
+# Iterate through every slice with starting indices offset by 4
+assignments.each_slice(4) do |i|
+  if acceptable && !shiftOk(i) then
+    acceptable = false
+  end
+end
+if acceptable then
+puts "Acceptable"
+else
+  puts "Not Acceptable"
+end
