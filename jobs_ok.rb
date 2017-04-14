@@ -75,8 +75,9 @@ assignments.each_slice(4) do |i|
     acceptable = false
   end
 end
+
 if acceptable then
-puts "Acceptable"
+  puts "Acceptable"
 else
   puts "Not Acceptable"
 end
