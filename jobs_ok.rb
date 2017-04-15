@@ -15,15 +15,15 @@ class Employee
     end    
   end
 
-  def doesPhone()
+  def doesPhone
     @phone == "1"
   end
   
-  def doesComp()
+  def doesComp
     @comp == "1"
   end
 
-  def doesNet()
+  def doesNet
     @net == "1"
   end
 
