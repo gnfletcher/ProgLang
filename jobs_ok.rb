@@ -71,7 +71,7 @@ end
 
 # Iterate through every slice with starting indices offset by 4
 assignments.each_slice(4) do |i|
-  if acceptable && !shiftOk(i) then
+  if acceptable && !shiftOk(i)  # "then" keyword is optional
     acceptable = false
   end
 end
