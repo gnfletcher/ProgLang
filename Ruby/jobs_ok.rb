@@ -66,18 +66,16 @@ end
 
 acceptable = true
 if assignments.uniq.length != assignments.length then
-  acceptable = false
+  puts "Not Acceptable"
+  exit(0)
 end
 
 # Iterate through every slice with starting indices offset by 4
 assignments.each_slice(4) do |i|
-  if acceptable && !shiftOk(i)  # "then" keyword is optional
-    acceptable = false
+  if !shiftOk(i)  # "then" keyword is optional
+    puts "Not Acceptable"
+    exit(0)
   end
 end
 
-if acceptable then
-  puts "Acceptable"
-else
-  puts "Not Acceptable"
-end
+puts "Acceptable"
