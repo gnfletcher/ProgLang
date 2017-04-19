@@ -64,7 +64,6 @@ numOfRecs = gets.to_i
   $records[empArray[0]] = Employee.new(empArray[0],empArray[1],empArray[2],empArray[3])
 end
 
-acceptable = true
 if assignments.uniq.length != assignments.length then
   puts "Not Acceptable"
   exit(0)
